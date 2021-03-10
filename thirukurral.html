@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<!-- 
+        Awesome Template
+        http://www.templatemo.com/preview/templatemo_450_awesome
+        -->
+	<title>Literature Love</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/templatemo-style.css">
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.singlePageNav.min.js"></script>
+	<script src="js/typed.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="microsoft.cognitiveservices.speech.sdk.bundle.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+	<script type="text/javascript" src="exp.json"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/microsoft-cognitiveservices-speech-sdk@latest/distrib/browser/microsoft.cognitiveservices.speech.sdk.bundle-min.js"> -->
+	</script>
+
+
+	<script>
+		$(document).ready(function () {
+			var jsonresponse;
+			function loadJSON(callback) {
+
+		var xobj = new XMLHttpRequest();
+		xobj.overrideMimeType("application/json");
+		xobj.open('GET', 'exp.json', true);
+		xobj.onreadystatechange = function() {
+			if (xobj.readyState == 4 && xobj.status == "200") {
+
+				// .open will NOT return a value but simply returns undefined in async mode so use a callback
+				callback(xobj.responseText);
+
+			}
+		}
+		xobj.send(null);
+
+		}
+
+		// Call to function with anonymous callback
+		loadJSON(function(response) {
+		// Do Something with the response e.g.
+		jsonresponse = JSON.parse(response);
+
+		// Assuming json data is wrapped in square brackets as Drew suggests
+		
+
+		});
+
+
+
+			// var jsonresponse = JSON.parse(data);
+			// console.log(jsonresponse['1']);
+			
+		
+			$('#submit').click(function (e) {
+				e.preventDefault();
+
+				var chapno = document.getElementById("sect").value;
+				if (chapno < 1 || chapno > 133) {
+					alert("Enter Chapter Number between 1 and 133");
+				}
+				else {
+					
+					$("tbody").html("");
+					var endcount = chapno * 10;
+					var intcount = endcount - 9;
+					$("#sect_tam").text("பால்: "+jsonresponse[intcount].sect_tam);
+					$("#sect_eng").text("Sect Name: " + jsonresponse[intcount].sect_eng);
+					$("#chap_tam").text("அதிகாரம்: " + jsonresponse[intcount].chap_tam);
+					$("#chap_eng").text("Chapter Name: "+jsonresponse[intcount].chap_eng);
+					for(var i=intcount;i<=endcount;i++){
+						
+						
+						$("tbody").append("<tr rowspan='4'><th scope='row'>" + i + "</th></tr><tr><td>" + jsonresponse[i].line1 + "<br />" + jsonresponse[i].line2+"<input type='submit'  onclick='playaudio(event)'  class='kuralaudio btn btn-default' value='Kural Audio'></td></tr><tr><td>"+jsonresponse[i].tamil+"<input type='submit'  onclick='playaudio(event)'  class='tamilaudio btn btn-default' value='Tamil Audio'></td></tr><tr><td>"+jsonresponse[i].english+"<input type='submit'  onclick='playaudio(event)'  class='englishaudio btn btn-default' value='English Audio'></td></tr><tr><td>"+jsonresponse[i].hindi+"<input type='submit'  onclick='playaudio(event)'  class='englishaudio btn btn-default' value='Hindi Audio'></td></tr><br/>" );
+						
+					}
+						
+        
+						
+				}
+
+			});
+
+
+
+
+
+
+	
+	
+
+		});
+
+	</script>
+
+
+
+</head>
+
+<body id="top">
+
+	<!-- start preloader -->
+	<div class="preloader">
+		<div class="sk-spinner sk-spinner-wave">
+			<div class="sk-rect1"></div>
+			<div class="sk-rect2"></div>
+			<div class="sk-rect3"></div>
+			<div class="sk-rect4"></div>
+			<div class="sk-rect5"></div>
+		</div>
+	</div>
+	<!-- end preloader -->
+
+	<!-- start header -->
+
+	<!-- end header -->
+
+	<!-- start navigation -->
+	<nav class="navbar navbar-default templatemo-nav" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon icon-bar"></span>
+					<span class="icon icon-bar"></span>
+					<span class="icon icon-bar"></span>
+				</button>
+				<a href="#" class="navbar-brand">Literature Love</a>
+			</div>
+
+
+	</nav>
+	<!-- end navigation -->
+
+	<!-- start home -->
+
+	<!-- start service -->
+	<section id="service">
+		<div class="container">
+			<a href="index.html" class="btn btn-default">Back to Home</a>
+
+
+
+
+
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="wow bounceIn" data-wow-offset="50" data-wow-delay="0.3s"><span>Thirukurral</span></h2>
+				</div>
+				<form>
+
+					<label for="example-number-input" class="col-6 col-form-label">Enter Chapter Number (From 1 to 133):
+					</label>
+					<div class="col-10">
+						<input class="form-control" type="number" value="1" id="sect" min="1" max="133">
+					</div>
+
+					<input type="submit" class="btn btn-default" id="submit">
+				</form>
+				<label class="col-6 col-form-label"> <h3><div id ="sect_tam"></div>
+				</label><br/>
+				<label class="col-6 col-form-label"> <h3><div id ="sect_eng"></div></h3>
+				</label><br/>
+				<label class="col-6 col-form-label"> <h3><div id ="chap_tam"></div></h3>
+				</label><br/>
+				<label class="col-6 col-form-label"> <h3><div id ="chap_eng"></div></h3>
+				</label><br/>
+				<table class='table'><tbody>
+				</tbody></table>
+
+			</div>
+
+
+
+
+		</div>
+	</section>
+	<!-- end servie -->
+	
+
+	<!-- start copyright -->
+	<footer id="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<p class="wow bounceIn" data-wow-offset="50" data-wow-delay="0.3s">
+						Developed by Vivek Raja P S  (விவேக் ராஜா) 
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- end copyright -->
+
+</body>
+
+<script>
+   
+   function playaudio(event){
+    // subscription key and region for speech services.
+    var subscriptionKey, serviceRegion;
+    var SpeechSDK =  window.SpeechSDK;
+    var synthesizer;
+
+  
+      
+      subscriptionKey = "ccfe53df0b1d443fbc00dd1d7ec88d98";
+      serviceRegion = "eastus";
+      startSpeakTextAsyncButton = $(event.target);
+	  console.log(startSpeakTextAsyncButton);
+	  let inputText = startSpeakTextAsyncButton.parent().text();
+		console.log(inputText);
+
+	var audio = startSpeakTextAsyncButton.attr("value");
+	var voice = "";
+	var lang = "";
+	if(audio == "Kural Audio" || audio=="Tamil Audio"){
+
+		voice = "ta-IN-Valluvar";
+		lang = "ta-IN";
+	}
+	else if(audio == "English Audio"){
+		voice = "en-IN-Heera";
+		lang = "en-IN";
+	}
+	else{
+		voice = "hi-IN-Kalpana";
+		lang = "hi-IN";
+	}
+	
+	
+	
+	var ssmlpre =  '<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="'+lang+'"> <voice name="'+voice+'">';
+    var ssmlpost =   '</voice></speak>'
+	ssmlpre = unescape(encodeURIComponent( ssmlpre ));
+	ssmlpost = unescape(encodeURIComponent( ssmlpost ));
+	var ssml = ssmlpre+inputText+ssmlpost;
+        startSpeakTextAsyncButton.disabled = true;
+      
+        var speechConfig;
+      
+        speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, serviceRegion);
+        
+
+        synthesizer = new SpeechSDK.SpeechSynthesizer(speechConfig);
+	
+		console.log(ssml);
+        
+        synthesizer.speakSsmlAsync(
+			ssml,
+          function (result) {
+			startSpeakTextAsyncButton.disabled = false;
+            if (result.reason === SpeechSDK.ResultReason.SynthesizingAudioCompleted) {
+              console.log("synthesis finished for [" + ssml + "].\n");
+            } else if (result.reason === SpeechSDK.ResultReason.Canceled) {
+				console.log("synthesis failed. Error detail: " + result.errorDetails + "\n");
+            }
+            window.console.log(result);
+            synthesizer.close();
+            synthesizer = undefined;
+          },
+          function (err) {
+            startSpeakTextAsyncButton.disabled = false;
+			console.log("err");
+            window.console.log(err);
+
+            synthesizer.close();
+            synthesizer = undefined;
+        });
+     
+
+      if (!!window.SpeechSDK) {
+        SpeechSDK = window.SpeechSDK;
+        startSpeakTextAsyncButton.disabled = false;
+
+        
+      }
+	
+   
+
+   }
+  
+  </script>
+
+
+
+
+</html>
