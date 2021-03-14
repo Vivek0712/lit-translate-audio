@@ -5,10 +5,10 @@ An Open-source website where literature texts are translated into various langua
 Start reading and listening to Literature texts in your preferred language
 
 Available Texts: 
-Thirukkural - Tamil, English, Hindi
-Aathichoodi - Tamil, English, Hindi
-Demain dès l'aube -  French, English, Tamil
-Girl I met - English, Tamil
+1. Thirukkural - Tamil, English, Hindi
+2. Aathichoodi - Tamil, English, Hindi
+3. Demain dès l'aube -  French, English, Tamil
+4. Girl I met - English, Tamil
 
 Read and listen to Thirukkural (in Tamil, Hindi and English) :
 ![Screenshot 2021-03-10 at 5 42 25 PM](https://user-images.githubusercontent.com/25385071/110686277-480a1600-8205-11eb-8094-f424d0567c24.png)
@@ -28,10 +28,10 @@ Microsoft Azure Services:
 Learn the step by step implementation of the solution in my [blog:](https://vivekraja98.medium.com) 
 
 Contributors
-Vivek Raja & Chinmaye Jain- Thirukurral
-Dr. Marie Pierre Augustin, Head of French Department, Madurai Kamaraj University (Retd.) - Victor Hugo poems
-Mrs. Vidya Raghunath, HR @ Redhat - Aathichoodi
-Hariharan S - Authored Girl I met
+1. Vivek Raja & Chinmaye Jain- Thirukurral
+2. Dr. Marie Pierre Augustin, Head of French Department, Madurai Kamaraj University (Retd.) - Victor Hugo poems
+3. Mrs. Vidya Raghunath, HR @ Redhat - Aathichoodi
+4. Hariharan S - Authored Girl I met
 
 Want to contribute?
 
