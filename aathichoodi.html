@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<!-- 
+        Awesome Template
+        http://www.templatemo.com/preview/templatemo_450_awesome
+        -->
+	<title>Literature Love</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/templatemo-style.css">
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.singlePageNav.min.js"></script>
+	<script src="js/typed.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="microsoft.cognitiveservices.speech.sdk.bundle.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+	
+    <script type = "text/javascript" src="aathichoodi.json"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/microsoft-cognitiveservices-speech-sdk@latest/distrib/browser/microsoft.cognitiveservices.speech.sdk.bundle-min.js"> -->
+	</script>
+
+
+
+	<script>
+		$(document).ready(function () {
+
+
+
+
+			var jsonresponse;
+            var intcount;
+            var endcount;
+
+	function loadJSON(callback) {
+
+		var xobj = new XMLHttpRequest();
+		xobj.overrideMimeType("application/json");
+		xobj.open('GET', 'aathichoodi.json', true);
+		xobj.onreadystatechange = function() {
+			if (xobj.readyState == 4 && xobj.status == "200") {
+
+				// .open will NOT return a value but simply returns undefined in async mode so use a callback
+				callback(xobj.responseText);
+
+			}
+		}
+		xobj.send(null);
+
+		}
+
+		// Call to function with anonymous callback
+		loadJSON(function(response) {
+		// Do Something with the response e.g.
+		jsonresponse = JSON.parse(response);
+
+		// Assuming json data is wrapped in square brackets as Drew suggests
+		
+
+		});
+
+
+
+//         var jsonresponse = JSON.parse(data);
+			console.log(jsonresponse['1']);
+			
+            $("tbody").append("<tr><th>#</th><th>Poem</th><th>Tamil</th><th>English</th><th>Hindi</th></tr>");
+
+for(var i=1;i<=13;i++){
+    
+    
+    $("tbody").append("<tr><td>" + i + "</td><td>" + jsonresponse[i].poem+"<input type='submit'  onclick='playaudio(event)'  class='kuralaudio btn btn-default' value='Kural Audio'></td><td>"+jsonresponse[i].tamil+"<input type='submit'  onclick='playaudio(event)'  class='tamilaudio btn btn-default' value='Tamil Audio'></td><td>"+jsonresponse[i].english+"<input type='submit'  onclick='playaudio(event)'  class='englishaudio btn btn-default' value='English Audio'></td><td>"+jsonresponse[i].hindi+"<input type='submit'  onclick='playaudio(event)'  class='englishaudio btn btn-default' value='Hindi Audio'></td></tr><br/>" );
+    
+}
+            $('#chapter').on('change', function() {
+             
+		
+             if ($('#chapter :selected').text() == "உயிர் வருக்கம்")
+             {
+                intcount = 1;
+                endcount = 13;
+             }
+             else if ($('#chapter :selected').text() == "உயிர்மெய் வருக்கம்"){
+                 intcount = 14;
+                 endcount = 31;
+
+             }
+             else if ($('#chapter :selected').text() == "ககர வருக்கம்"){
+                 intcount = 32;
+                 endcount = 43;
+
+             }
+            else if ($('#chapter :selected').text() == "சகர வருக்கம்"){
+                 intcount = 44;
+                 endcount = 54;
+
+             }
+             else if ($('#chapter :selected').text() == "தகர வருக்கம்"){
+                 intcount = 55;
+                 endcount = 65;
+
+             }
+             else if ($('#chapter :selected').text() == "நகர வருக்கம்"){
+                 intcount = 66;
+                 endcount = 76;
+
+             }
+             else if ($('#chapter :selected').text() == "பகர வருக்கம்"){
+                 intcount = 77;
+                 endcount = 87;
+
+             }
+             else if ($('#chapter :selected').text() == "மகர வருக்கம்"){
+                 intcount = 88;
+                 endcount = 98;
+
+             }
+             else{
+                intcount = 99;
+                 endcount = 109;
+             }
+
+             $("tbody").html("");
+             $("tbody").append("<tr><th>#</th><th>Poem</th><th>Tamil</th><th>English</th><th>Hindi</th></tr>");
+
+					for(var i=intcount;i<=endcount;i++){
+						
+						
+						$("tbody").append("<tr><td>" + i + "</td><td>" + jsonresponse[i].poem+"<input type='submit'  onclick='playaudio(event)'  class='kuralaudio btn btn-default' value='Poem Audio'></td><td>"+jsonresponse[i].tamil+"<input type='submit'  onclick='playaudio(event)'  class='tamilaudio btn btn-default' value='Tamil Audio'></td><td>"+jsonresponse[i].english+"<input type='submit'  onclick='playaudio(event)'  class='englishaudio btn btn-default' value='English Audio'></td><td>"+jsonresponse[i].hindi+"<input type='submit'  onclick='playaudio(event)'  class='englishaudio btn btn-default' value='Hindi Audio'></td></tr><br/>" );
+						
+					}
+        
+         });
+
+		
+	
+						
+        
+						
+			
+
+
+
+
+
+
+	
+	
+
+		});
+
+	</script>
+
+
+
+</head>
+
+<body id="top">
+
+	<!-- start preloader -->
+	<div class="preloader">
+		<div class="sk-spinner sk-spinner-wave">
+			<div class="sk-rect1"></div>
+			<div class="sk-rect2"></div>
+			<div class="sk-rect3"></div>
+			<div class="sk-rect4"></div>
+			<div class="sk-rect5"></div>
+		</div>
+	</div>
+	<!-- end preloader -->
+
+	<!-- start header -->
+
+	<!-- end header -->
+
+	<!-- start navigation -->
+	<nav class="navbar navbar-default templatemo-nav" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon icon-bar"></span>
+					<span class="icon icon-bar"></span>
+					<span class="icon icon-bar"></span>
+				</button>
+				<a href="#" class="navbar-brand">Literature Love</a>
+			</div>
+
+
+	</nav>
+	<!-- end navigation -->
+
+	<!-- start home -->
+
+	<!-- start service -->
+	<section id="service">
+		<div class="container">
+			<a href="index.html" class="btn btn-default">Back to Home</a>
+
+
+
+
+
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="wow bounceIn" data-wow-offset="50" data-wow-delay="0.3s"><span>Aathichoodi</span></h2>
+				</div>
+                <div>
+                    <label for="cars">Choose language:</label>
+
+            <select name="cars" id="chapter">
+            <option value="volvo" selected="selected">உயிர் வருக்கம்</option>
+             <option value="saab" >உயிர்மெய் வருக்கம்</option>
+             <option value="saab" >ககர வருக்கம்</option>
+             <option value="saab" >சகர வருக்கம்</option>
+             <option value="saab" >தகர வருக்கம்</option>
+             <option value="saab" >நகர வருக்கம்</option>
+             <option value="saab" >பகர வருக்கம்</option>
+             <option value="saab" >மகர வருக்கம்</option>
+             
+             <option value="saab" > வகர வருக்கம்</option>
+                </select>
+                </div>
+
+				<table id="tableid" class='table'><tbody>
+                   
+				</tbody>
+            
+            
+            </table>
+
+			</div>
+
+
+
+
+		</div>
+	</section>
+	<!-- end servie -->
+	
+
+	<!-- start copyright -->
+	<footer id="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<p class="wow bounceIn" data-wow-offset="50" data-wow-delay="0.3s">
+						Developed by Vivek Raja P S  (விவேக் ராஜா) 
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- end copyright -->
+
+</body>
+
+<script>
+   
+   function playaudio(event){
+    // subscription key and region for speech services.
+    var subscriptionKey, serviceRegion;
+    var SpeechSDK =  window.SpeechSDK;
+    var synthesizer;
+
+  
+      
+      subscriptionKey = "ccfe53df0b1d443fbc00dd1d7ec88d98";
+      serviceRegion = "eastus";
+      startSpeakTextAsyncButton = $(event.target);
+	  console.log(startSpeakTextAsyncButton);
+	  let inputText = startSpeakTextAsyncButton.parent().text();
+		console.log(inputText);
+
+	var audio = startSpeakTextAsyncButton.attr("value");
+	var voice = "";
+	var lang = "";
+	if(audio == "Kural Audio" || audio=="Tamil Audio"){
+
+		voice = "ta-IN-Valluvar";
+		lang = "ta-IN";
+	}
+	else if(audio == "English Audio"){
+		voice = "en-IN-Heera";
+		lang = "en-IN";
+	}
+	else{
+		voice = "hi-IN-Kalpana";
+		lang = "hi-IN";
+	}
+	
+	
+	
+	var ssmlpre =  '<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="'+lang+'"> <voice name="'+voice+'">';
+    var ssmlpost =   '</voice></speak>'
+	ssmlpre = unescape(encodeURIComponent( ssmlpre ));
+	ssmlpost = unescape(encodeURIComponent( ssmlpost ));
+	var ssml = ssmlpre+inputText+ssmlpost;
+        startSpeakTextAsyncButton.disabled = true;
+      
+        var speechConfig;
+      
+        speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, serviceRegion);
+        
+
+        synthesizer = new SpeechSDK.SpeechSynthesizer(speechConfig);
+	
+		console.log(ssml);
+        
+        synthesizer.speakSsmlAsync(
+			ssml,
+          function (result) {
+			startSpeakTextAsyncButton.disabled = false;
+            if (result.reason === SpeechSDK.ResultReason.SynthesizingAudioCompleted) {
+              console.log("synthesis finished for [" + ssml + "].\n");
+            } else if (result.reason === SpeechSDK.ResultReason.Canceled) {
+				console.log("synthesis failed. Error detail: " + result.errorDetails + "\n");
+            }
+            window.console.log(result);
+            synthesizer.close();
+            synthesizer = undefined;
+          },
+          function (err) {
+            startSpeakTextAsyncButton.disabled = false;
+			console.log("err");
+            window.console.log(err);
+
+            synthesizer.close();
+            synthesizer = undefined;
+        });
+     
+
+      if (!!window.SpeechSDK) {
+        SpeechSDK = window.SpeechSDK;
+        startSpeakTextAsyncButton.disabled = false;
+
+        
+      }
+	
+   
+
+   }
+  
+  </script>
+
+
+
+
+
+</html>
